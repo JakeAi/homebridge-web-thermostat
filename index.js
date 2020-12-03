@@ -223,6 +223,13 @@ Thermostat.prototype = {
     this.service.getCharacteristic(Characteristic.TemperatureDisplayUnits).updateValue(this.temperatureDisplayUnits)
 
     this.service
+      .getCharacteristic(Characteristic.CurrentTemperature)
+      .setProps({
+        minValue: -600,
+        maxValue: 600
+      });
+
+    this.service
       .getCharacteristic(Characteristic.TargetHeatingCoolingState)
       .on('set', this.setTargetHeatingCoolingState.bind(this))
 
